@@ -1,7 +1,8 @@
 import React from 'react';
 import Board from './Components/Board';  
-import Horizontal from './Components/Horizontal';
+// import Horizontal from './Components/Horizontal';
 import Vertical from './Components/Vertical';
+import Game from './Components/Game';
 import Tile from './Components/Tile';
 
 function App() {
