@@ -1,7 +1,8 @@
 import React from 'react';
 import Board from './Components/Board';  
-import Horizontal from './Components/Horizontal';
+// import Horizontal from './Components/Horizontal';
 import Vertical from './Components/Vertical';
+import Game from './Components/Game';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
         <li><strong>Game Setup:</strong> Each player draws tiles to determine who goes first, and everyone starts with seven letter tiles on their rack.</li>
         <li><strong>Taking Turns:</strong> Players alternate turns, placing words on the board either horizontally or vertically. Each new word must connect to at least one existing word.</li>
         <ul>
-        <li><Horizontal/></li>
+        <li><Game/></li>
         <li><Vertical /></li>
         <li><strong>Scoring:</strong> Players earn points based on the letters they use and any special bonuses on the board. The game ends when all tiles are used or no more valid moves can be made.</li>
         </ul>
