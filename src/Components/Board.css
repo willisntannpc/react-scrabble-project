@@ -25,3 +25,8 @@
     bottom: 0;
     right: 0;
 }
+.word-play{
+    display: flex;
+    flex-direction: row;
+    padding: 20px 0;
+}
