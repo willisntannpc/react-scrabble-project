@@ -1,5 +1,6 @@
 import React from 'react';
 import Board from './Components/Board';  
+import Horizontal from './Components/Horizontal';
 
 function App() {
   return (
