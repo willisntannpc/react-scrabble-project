@@ -1,7 +1,4 @@
-import React, { useState } from 'react';
-
-function ScoreTable({ playerTurn, playerScores }) {
-  // Destructures player scores passed as props to display them in the score table.
+function ScoreTable({ playerTurn, playerScores, playedWords = [] }) { // Default playedWords to empty array
   const { player1, player2 } = playerScores;
 
   return (
@@ -12,8 +9,15 @@ function ScoreTable({ playerTurn, playerScores }) {
         <p>Player 2 Score: {player2}</p>
         <p>Current Turn: Player {playerTurn}</p>
       </div>
+      <h3>Played Words:</h3>
+      <ul>
+        {playedWords.map((entry, index) => (
+          <li key={index}>
+            Word: {entry.word} | Score: {entry.score}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
-
 export default ScoreTable;
