@@ -36,3 +36,41 @@
     transform: rotate(360deg);
   }
 }
+
+
+#score {
+  margin-top: 20px;
+}
+
+/* Align the ordered and unordered lists to the left */
+#score ol, #score ul {
+  text-align: left;
+  margin-left: 20px;  /* Adds indentation for list items */
+  padding-left: 0;    /* Removes default padding */
+}
+
+#score li {
+  margin-bottom: 10px;  /* Space between list items */
+}
+
+/* Style the button */
+button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#score ol li, #score ul li {
+  margin-bottom: 10px; /* Space between list items */
+}
+
+
+
