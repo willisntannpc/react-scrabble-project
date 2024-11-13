@@ -1,6 +1,8 @@
 import React from 'react';
 import Board from './Components/Board';  
-// import Horizontal from './Components/Horizontal';
+import Horizontal from './Components/Horizontal';
+import TileRack from './Components/TileRack';
+import GameLogic from './Components/GameLogic';
 import Vertical from './Components/Vertical';
 import Game from './Components/Game';
 import Tile from './Components/Tile';
@@ -58,6 +60,8 @@ function App() {
           <li><strong>Winning:</strong> The player with the highest score wins the game.</li>
         </ol>
       </div>
+     <GameLogic />
+        <TileRack />
     </div>
   );
 }

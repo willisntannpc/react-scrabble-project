@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ScoreTable from './ScoreTable';
+import Board from './Board';
+import TileRack from './TileRack';
 
+// Define letter values for Scrabble scoring
 const letterValues = {
   E: 1, A: 1, I: 1, O: 1, N: 1, R: 1, T: 1, L: 1, S: 1, U: 1,
   D: 2, G: 2,
@@ -11,55 +14,73 @@ const letterValues = {
   Q: 10, Z: 10,
 };
 
-// Define special squares and their multipliers
-const SPECIAL_SQUARES = {
-  DL: 'DL', // Double Letter
-  TL: 'TL', // Triple Letter
-  DW: 'DW', // Double Word
-  TW: 'TW', // Triple Word
+// Special tiles on the Scrabble board
+const specialTiles = {
+  TW: ["1,1", "1,8", "1,15", "8,1", "8,15", "15,1", "15,8", "15,15"],
+  DW: ["2,2", "2,14", "3,3", "3,13", "4,4", "4,12", "5,5", "5,11", "8,8", "11,5", "11,11", "12,4", "12,12", "13,3", "13,13", "14,2", "14,14"],
+  TL: ["2,6", "2,10", "6,2", "6,6", "6,10", "6,14", "10,2", "10,6", "10,10", "10,14", "14,6", "14,10"],
+  DL: ["1,4", "1,12", "3,7", "3,9", "4,1", "4,8", "4,15", "7,3", "7,7", "7,9", "7,13", "8,4", "8,12", "9,3", "9,7", "9,9", "9,13", "12,1", "12,8", "12,15", "13,7", "13,9", "15,4", "15,12"]
+};
+
+// Get special tile type at a given position
+const getSpecialTileType = (x, y) => {
+  const position = `${x},${y}`;
+  if (specialTiles.TW.includes(position)) return 'TW';
+  if (specialTiles.DW.includes(position)) return 'DW';
+  if (specialTiles.TL.includes(position)) return 'TL';
+  if (specialTiles.DL.includes(position)) return 'DL';
+  return null;
 };
 
 function GameLogic() {
   const [playerTurn, setPlayerTurn] = useState(1);
   const [playerScores, setPlayerScores] = useState({ player1: 0, player2: 0 });
-  const [word, setWord] = useState('');
-  const [specialSquares, setSpecialSquares] = useState([]); // Array to hold special square types for each letter
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    handleWordCompletion(word, specialSquares);
-    setWord(''); // Reset the word and special squares after submission
-    setSpecialSquares([]);
-  };
-
+  const [playedWords, setPlayedWords] = useState([]); // Track words played on the board
+  const [tiles, setTiles] = useState(['C', 'A', 'T', 'I', 'O', 'S']); // Tiles in TileRack
+  const [boardState, setBoardState] = useState([]); // Track the board state
   
-  const calculateWordScore = (word, specialSquares) => {
-    let letterMultiplier = 1; // Multiplier for individual letters
-    let wordMultiplier = 1; // Multiplier for the entire word
+  // Calculate word score based on board layout and special tiles
+  const calculateWordScore = (word, startX, startY, direction) => {
+    let wordMultiplier = 1;
     let wordScore = 0;
 
-    word.split('').forEach((letter, index) => {
-      let baseScore = letterValues[letter.toUpperCase()] || 0;
-      const square = specialSquares[index]; // Get square type at the letter position
+    word.split('').forEach((letter, i) => {
+      const x = direction === 'horizontal' ? startX + i : startX;
+      const y = direction === 'vertical' ? startY + i : startY;
+      const squareType = getSpecialTileType(x + 1, y + 1);
 
-      // Apply square multipliers
-      if (square === SPECIAL_SQUARES.DL) baseScore *= 2;
-      if (square === SPECIAL_SQUARES.TL) baseScore *= 3;
-      if (square === SPECIAL_SQUARES.DW) wordMultiplier *= 2;
-      if (square === SPECIAL_SQUARES.TW) wordMultiplier *= 3;
+      let baseScore = letterValues[letter.toUpperCase()] || 0;
+
+      // Apply square multipliers based on squareType
+      if (squareType === 'DL') baseScore *= 2;
+      if (squareType === 'TL') baseScore *= 3;
+      if (squareType === 'DW') wordMultiplier *= 2;
+      if (squareType === 'TW') wordMultiplier *= 3;
 
       wordScore += baseScore;
     });
 
-    // Apply word multiplier to total word score
     return wordScore * wordMultiplier;
   };
 
-  // Check if the player used all 7 letters for a 50-point bonus
-  const handleWordCompletion = (word, specialSquares) => {
-    const score = calculateWordScore(word, specialSquares);
+  const handleWordCompletion = (word, startX, startY, direction) => {
+    const score = calculateWordScore(word, startX, startY, direction);
     const bonus = word.length === 7 ? 50 : 0; // Bingo bonus if all tiles used
     const totalScore = score + bonus;
+
+    // Add word to playedWords
+    setPlayedWords([...playedWords, { word, startX, startY, direction }]);
+    
+    // Update boardState by marking tiles as placed (you may want to store more details)
+    const updatedBoardState = [...boardState];
+    word.split('').forEach((letter, i) => {
+      const x = direction === 'horizontal' ? startX + i : startX;
+      const y = direction === 'vertical' ? startY + i : startY;
+      updatedBoardState.push({ letter, x, y });
+    });
+    setBoardState(updatedBoardState);
+
+    // Update player score
     updateScore(totalScore);
     switchTurn();
   };
@@ -83,22 +104,8 @@ function GameLogic() {
   return (
     <div className="game-logic">
       <ScoreTable playerTurn={playerTurn} playerScores={playerScores} />
-      
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={word}
-          placeholder="Enter word"
-          onChange={(e) => setWord(e.target.value)}
-        />
-        <input
-          type="text"
-          value={specialSquares.join(',')}
-          placeholder="Special squares (e.g., DL, TL)"
-          onChange={(e) => setSpecialSquares(e.target.value.split(','))}
-        />
-        <button type="submit">Submit Word</button>
-      </form>
+      <Board playedWords={playedWords} />
+      <TileRack tiles={tiles} handleWordCompletion={handleWordCompletion} />
     </div>
   );
 }
