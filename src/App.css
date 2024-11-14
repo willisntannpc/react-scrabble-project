@@ -38,6 +38,20 @@
   }
 }
 
+@keyframes slideToBoard {
+  0% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-50px);
+    opacity: 1;
+  }
+}
+
+.tile-animation {
+  animation: slideToBoard 0.8s ease-out;
+}
 
 #score {
   margin-top: 20px;

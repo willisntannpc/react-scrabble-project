@@ -35,11 +35,10 @@ const getSpecialTileType = (x, y) => {
 function GameLogic() {
   const [playerTurn, setPlayerTurn] = useState(1);
   const [playerScores, setPlayerScores] = useState({ player1: 0, player2: 0 });
-  const [playedWords, setPlayedWords] = useState([]); // Track words played on the board
-  const [tiles, setTiles] = useState(['C', 'A', 'T', 'I', 'O', 'S']); // Tiles in TileRack
-  const [boardState, setBoardState] = useState([]); // Track the board state
-  
-  // Calculate word score based on board layout and special tiles
+  const [playedWords, setPlayedWords] = useState([]);
+  const [tiles, setTiles] = useState(['C', 'A', 'T', 'D', 'A', 'R', 'E']);
+  const [boardState, setBoardState] = useState([]);
+
   const calculateWordScore = (word, startX, startY, direction) => {
     let wordMultiplier = 1;
     let wordScore = 0;
@@ -63,26 +62,41 @@ function GameLogic() {
     return wordScore * wordMultiplier;
   };
 
+  const animateWord = (word, startX, startY, direction) => {
+    word.split('').forEach((letter, i) => {
+      setTimeout(() => {
+        const x = direction === 'horizontal' ? startX + i : startX;
+        const y = direction === 'vertical' ? startY + i : startY;
+
+        setBoardState((prevBoardState) => [
+          ...prevBoardState,
+          { letter, x, y }
+        ]);
+      }, i * 500);
+    });
+  };
+
   const handleWordCompletion = (word, startX, startY, direction) => {
     const score = calculateWordScore(word, startX, startY, direction);
-    const bonus = word.length === 7 ? 50 : 0; // Bingo bonus if all tiles used
+    const bonus = word.length === 7 ? 50 : 0;
     const totalScore = score + bonus;
 
-    // Add word to playedWords
-    setPlayedWords([...playedWords, { word, startX, startY, direction }]);
-    
-    // Update boardState by marking tiles as placed (you may want to store more details)
-    const updatedBoardState = [...boardState];
-    word.split('').forEach((letter, i) => {
-      const x = direction === 'horizontal' ? startX + i : startX;
-      const y = direction === 'vertical' ? startY + i : startY;
-      updatedBoardState.push({ letter, x, y });
-    });
-    setBoardState(updatedBoardState);
+    setPlayedWords((prevWords) => [...prevWords, { word, startX, startY, direction, score: totalScore }]);
+    animateWord(word, startX, startY, direction);
 
-    // Update player score
     updateScore(totalScore);
     switchTurn();
+
+    setTiles((prevTiles) => {
+      const newTiles = [...prevTiles];
+      word.split('').forEach((letter) => {
+        const tileIndex = newTiles.indexOf(letter);
+        if (tileIndex > -1) {
+          newTiles.splice(tileIndex, 1);
+        }
+      });
+      return newTiles;
+    });
   };
 
   const updateScore = (points) => {
@@ -104,8 +118,15 @@ function GameLogic() {
   return (
     <div className="game-logic">
       <ScoreTable playerTurn={playerTurn} playerScores={playerScores} />
-      <Board playedWords={playedWords} />
-      <TileRack tiles={tiles} handleWordCompletion={handleWordCompletion} />
+      <Board playedWords={playedWords} boardState={boardState} />
+      <TileRack tiles={tiles} onWordSubmit={handleWordCompletion} />
+
+      <button onClick={() => handleWordCompletion("CAT", 7, 7, "horizontal")}>
+        Play "CAT"
+      </button>
+      <button onClick={() => handleWordCompletion("DARE", 7, 8, "vertical")}>
+        Play "DARE"
+      </button>
     </div>
   );
 }
