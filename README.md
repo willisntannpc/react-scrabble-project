@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+Here’s the updated README including the live link:
+
+---
+
+# React Scrabble Game
+
+This project is a Scrabble game built with React, featuring an interactive board, score tracking, and animated letter placement. Players can drag and drop letters onto the board, and special tiles such as double and triple word/letter scores are highlighted.
+
+## Getting Started
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+### Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+- **`npm start`**  
+  Runs the app in development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser. The page reloads automatically as you make changes, and any lint errors will appear in the console.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **`npm test`**  
+  Launches the test runner in watch mode.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **`npm run build`**  
+  Builds the app for production, optimizing it for best performance by bundling and minifying files in the `build` folder.
 
-### `npm test`
+- **`npm run eject`**  
+  Copies all configuration files and dependencies directly into your project, giving full control over the setup. **Note:** Once you `eject`, you cannot revert this action.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Features
 
-### `npm run build`
+- **Interactive Board Setup:**  
+  Generate 15x15 Scrabble boards with designated special tiles for double and triple word/letter scores. Each board supports different word configurations and animations.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Letter Rack and Placement:**  
+  Predefined letter racks are displayed for each player, and letters can be animated onto the board with smooth transitions.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Special Tiles:**  
+  Custom styles and colors mark special tiles such as double/triple word and letter scores, enhancing the gameplay experience.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Animations:**  
+  Letter tiles move from the rack to the board in animated steps, aligning with Scrabble word placement rules for both horizontal and vertical positioning.
 
-### `npm run eject`
+### Project Structure
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **Board Generation:**  
+  The `genBoard` function creates and styles the 15x15 Scrabble board for each player. Special tiles (e.g., TW, DW) are color-coded, and a central star tile marks the starting point.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **Rack Setup and Animation:**  
+  `wordRack` generates player racks with letter values displayed. Animated functions `animateWordToBoardHorizontally` and `animateWordToBoardVertically` handle tile movement from racks to the board.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **Customizable Letter Tiles and Scoring:**  
+  Each letter has an assigned score, displayed in the tile's corner. Racks are generated dynamically based on predefined letter arrays.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Links
 
-## Learn More
+- **GitHub Repository:** [React Scrabble Project](https://github.com/willisntannpc/react-scrabble-project/)
+- **Live Demo:** [Play the Game](https://react-scrabble-project.vercel.app/)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Feel free to contribute or report any issues!
