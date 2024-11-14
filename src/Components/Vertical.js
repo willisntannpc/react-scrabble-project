@@ -3,7 +3,7 @@ import Board from "./Board";
 function Vertical() {
   return (
     <div>
-      <h1>Vertical Play</h1>
+      <h2>Vertical Play</h2>
       <Board />
       <TileRack/>
     </div>

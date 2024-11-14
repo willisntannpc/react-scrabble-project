@@ -1,15 +1,12 @@
 import React from "react";
 import TileRack from "./TileRack";
-import Board2 from "./Board2";
-import AnimateWord from "./AnimateCat";
-
+import Board from "./Board";
 function Horizontal() {
   return (
     <div className="horizontal">
-      <h1>Horizontal Play</h1>
-      <Board2 />
+      <h2>Horizontal Play</h2>
+      <Board />
       <TileRack/>
-      <AnimateWord/>
     </div>
   );
 }

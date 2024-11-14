@@ -13,17 +13,19 @@
     font-size: 24px;
     background-color: rgb(245, 245, 242);
     position: relative;
+    padding: 5px;
 }
 .tile-rack{
     display: flex;
     flex-direction: row;
     padding:50px 0;
+    justify-content: center;
 }
 .score {
     font-size: 16px;
     position: absolute;
-    bottom: 0;
-    right: 0;
+    bottom: 3px;
+    right: 3px;
 }
 .word-play{
     display: flex;

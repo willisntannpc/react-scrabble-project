@@ -2,25 +2,25 @@ import React from 'react';
 import specialTiles from './SpecialTiles';
 import './Board.css';
 
-const TW = () => (
+export const TW = () => (
     <div style={{ backgroundColor: "red", width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         TW
     </div>
 );
 
-const DW = () => (
+export const DW = () => (
     <div style={{ backgroundColor: "orange", width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         DW
     </div>
 );
 
-const TL = () => (
+export const TL = () => (
     <div style={{ backgroundColor: "blue", width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         TL
     </div>
 );
 
-const DL = () => (
+export const DL = () => (
     <div style={{ backgroundColor: "lightblue", width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         DL
     </div>

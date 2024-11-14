@@ -1,75 +1,51 @@
-
-.App {
-  text-align: center;
+.body{
+width:90%;
+margin: 0 auto;
+font-size: 18px;
+line-height: 2;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container{
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  /* width:90%;
+  margin: 0 auto; */
+}
+.special-tiles{
+  padding: 20px;
+  margin-right: 100px;
+  flex:1;
+  background-color: antiquewhite;
+}
+.special-tiles p{
+  font-size: 1.25em;
+  line-height: 1.25;
+}
+.plays{
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  list-style: none;
+}
+.horizontal{
+  margin-right: 50px;
+}
+.special-score{
+  width: 70px;
+  height: 70px;
+}
+.scoring{
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  padding: 10px 20px;
+  background-color: antiquewhite;
+  flex:1;
+}
+.scoring h3{
+  margin-left: 20px;
+  font-size: 1.5em;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  padding:0 auto;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-
-#score {
-  margin-top: 20px;
-}
-
-/* Align the ordered and unordered lists to the left */
-#score ol, #score ul {
-  text-align: left;
-  margin-left: 20px;  /* Adds indentation for list items */
-  padding-left: 0;    /* Removes default padding */
-}
-
-#score li {
-  margin-bottom: 10px;  /* Space between list items */
-}
-
-/* Style the button */
-button {
-  padding: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-bottom: 15px;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-#score ol li, #score ul li {
-  margin-bottom: 10px; /* Space between list items */
-}
-
