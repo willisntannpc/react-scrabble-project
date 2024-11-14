@@ -7,7 +7,7 @@ function Vertical() {
   const [tiles, setTiles] = useState(['D', 'A','W', 'U', 'I', 'R', 'E']);
   const word = ['D', 'A', 'R', 'E'];
   const startColumn = 8; // Column for placing the word
-  const startRow = 8; // Starting row
+  const startRow = 7; // Starting row
   const animationDelay = 500; // 500ms delay per letter for animation
   const loopDelay = 2000; // 2000ms delay before the word is animated again
   const timeoutsRef = useRef([]);
