@@ -6,6 +6,7 @@ import Tile from './Components/Tile';
 import { TW, DW, TL, DL } from './Components/Board'; // Import special tiles
 import './App.css';
 import Header from './Header';
+import TileRack from './Components/TileRack';
 
 function App() {
   return (
@@ -20,24 +21,20 @@ function App() {
         <div className="instructions">
           <h1>Instructions</h1>
           <ol>
-            <li><strong>Game Setup:</strong> Each player draws tiles to determine who goes first, and everyone starts with seven letter tiles on their rack.</li>
+            <li><strong>Game Setup:</strong> Each player draws tiles to determine who goes first, and everyone starts with seven letter tiles on their rack e.g.</li>
+            <TileRack/>
             <li><strong>Taking Turns:</strong> Players alternate turns, placing words on the board either horizontally or vertically. Each new word must connect to at least one existing word and should be 2 or more letters long.</li>
             <ul className="plays">
               <li className='horizontal'><Horizontal /></li>
               <li className='vertical'><Vertical /></li>
             </ul>
-            <p>Diagonal plays or words that read right-to-left or bottom-to-top (e.g. SEIVARG*) are not acceptable.
-            All letters played in one turn must lie on a line and form a continuous word (usually called the "main word"). At least one tile played must be adjacent to a tile previously on the board.</p>
-            <li><strong>Scoring:</strong> Players earn points based on the letters they use and any special bonuses on the board. The game ends when all tiles are used or no more valid moves can be made.</li>
-            <li><strong>End of Game:</strong> The game ends when all tiles are drawn and one player uses all their tiles, or no valid moves remain.</li>
-            <li><strong>Winning:</strong> The player with the highest score wins the game.</li>
-          </ol>
-        </div>
-
-        <div className="container">
+            <p><b>Diagonal plays or words that read right-to-left or bottom-to-top are not acceptable. </b><br/>
+            All letters played in one turn must lie on a line and form a continuous word and at least one tile played must be adjacent to a tile previously on the board.</p>
+            <li><strong>Tiles & Scoring:</strong> Players earn points based on the letters they use and any special bonuses on the board.Each letter tile has a point value. Values range from 0 point for a blank tile to 10 points for the letters.</li>
+            <div className="container">
           <div className="special-tiles">
-            <h1>Tiles & Scoring</h1>
-            <p>Each letter tile has a point value. Values range from 0 point for a blank tile to 10 points for the letters.</p>
+            <h1>Special Scores</h1>
+            <p>These are special spaces on the board where if tiles are placed the score of the word/letter is increased</p>
             <div className="double-letter">
               <div className='scoring'>
                 <div className='special-score'><DL /></div>
@@ -85,6 +82,12 @@ function App() {
             <Board />
           </div>
         </div>
+            <li><strong>End of Game:</strong> The game ends when all tiles are drawn and one player uses all their tiles, or no valid moves remain.</li>
+            <li><strong>Winning:</strong> The player with the highest score wins the game.</li>
+          </ol>
+        </div>
+
+      
     
         </div>
         </div>

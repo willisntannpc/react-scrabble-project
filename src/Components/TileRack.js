@@ -2,7 +2,7 @@ import React from "react";
 import Tile from "./Tile";
 import './Board.css'; 
 
-function TileRack({ tiles = ['C', 'A', 'T', 'D', 'A', 'R', 'E'] }) {
+function TileRack({ tiles = ['V', 'O', 'P', 'D', 'A', 'R', 'K'] }) {
   return (
     <div className="tile-rack">
       {tiles.map((tile, index) => (
